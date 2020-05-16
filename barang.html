@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="jquery.PrintArea.js"></script>
+    <script>
+        function combo() {
+            var kodebarang = (document.forminput.inputkodebarang.value);
+            var namabarang = "";
+            var hargabarang = 0.0;
+
+            if (kodebarang == "b01") {
+                namabarang = "Mie Instan";
+                hargabarang = 2500;
+            } else if (kodebarang == "b02") {
+                namabarang = "Es teh";
+                hargabarang = 3500;
+            } else if (kodebarang == "b03") {
+                namabarang = "Kopi ABC";
+                hargabarang = 2000;
+            } else {
+                namabarang = "";
+                hargabarang = 0;
+            }
+
+            document.forminput.namabarang.value = namabarang;
+            document.forminput.hargasatuan.value = eval(hargabarang);
+        }
+
+        function hitungtotal() {
+            var hargabarang = (document.forminput.hargasatuan.value);
+            var jumlahbarang = (document.forminput.jumlahbarang.value);
+            var total = 0.0;
+
+            total = hargabarang * jumlahbarang;
+
+            document.forminput.inputtotal.value = eval(total);
+        }
+
+        function hitungkembalian() {
+            var total = (document.forminput.inputtotal.value);
+            var uangbayar = (document.forminput.inputbayar.value);
+            var kembalian = 0.0;
+
+            kembalian = uangbayar - total;
+
+            document.forminput.inputkembalian.value = eval(kembalian);
+        }
+
+        function simpan() {
+            document.forminput.kdpenjualan.value = document.forminput.inputkodepenjualan.value;
+            document.forminput.kdbarang.value = document.forminput.inputkodebarang.value;
+            document.forminput.nmbarang.value = document.forminput.namabarang.value;
+            document.forminput.hrgsatuan.value = document.forminput.hargasatuan.value;
+            document.forminput.ontotal.value = document.forminput.inputtotal.value;
+            document.forminput.odibayar.value = document.forminput.inputbayar.value;
+            document.forminput.okembalian.value = document.forminput.inputkembalian.value;
+        }
+    </script>
+
+</head>
+
+<body>
+    <form name="forminput" action="">
+        <h1 align="center">Warkop Selir</h1>
+        <br>
+        <div class="container">
+            <tbody>
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Kode Penjualan</th>
+                        <th scope="col"><input type="text" size="15" name="inputkodepenjualan"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Pilih Menu :</th>
+                        <td scope="col"><select name="inputkodebarang" onclick="combo()">
+                                <option value="caption">List menu</option>
+                                <option value="b01">B001</option>
+                                <option value="b02">B002</option>
+                                <option value="b03">B003</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Nama menu</td>
+                        <td scope="col"><input type="text" size="15" name="namabarang"></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Harga satuan :</td>
+                        <td scope="col"><input type="text" size="15" name="hargasatuan"></td>
+                    </tr>
+                    <tr>
+                        <td scope=" col">Jumlah barang :</td>
+                        <td scope="col"><input type="text" size="15" name="jumlahbarang"></td>
+                    </tr>
+                    <tr>
+                        <td scope="col"><input type="button" value="hitungtotal" onclick="hitungtotal()"></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Total :</td>
+                        <td scope="col"><input type="text" size="15" name="inputtotal"></td>
+                    </tr>
+                    <tr>
+                        <td scope=" col">Bayar :</td>
+                        <td scope="col"><input type="text" size="15" name="inputbayar"></td>
+                    </tr>
+                    <tr>
+                        <td scope="col"><input type="button" size="15" value="hitung bayar" onclick="hitungkembalian()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope=" col">Kembalian :</td>
+                        <td scope="col"><input type="text" size="15" name="inputkembalian"></td>
+                    </tr>
+                    <tr>
+                        <td scope=" col"><input type="button" value="simpan" onclick="simpan()"></td>
+                        <td scope="col"><input type="reset" value="refesh"></td>
+                    </tr>
+            </tbody>
+            <table class="table table-success">
+                <tr>
+                    <td scope="col">Kode penjulaan</td>
+                    <td><input type="text" name="kdpenjualan"></td>
+                </tr>
+                <tr>
+                    <td scope="col">Kode barang</td>
+                    <td><input type="text" name="kdbarang"></td>
+                </tr>
+                <tr>
+                <tr>
+                    <td scope="col">Nama barang</td>
+                    <td><input type="text" name="nmbarang"></td>
+                </tr>
+                <tr>
+                    <td scope="col">Harga satuan</td>
+                    <td><input type="text" name="hrgsatuan"></td>
+                </tr>
+                <tr>
+                    <td scope="col">Total :</td>
+                    <td><input type="text" name="ontotal"></td>
+                </tr>
+                <tr>
+                    <td scope="col">Dibayar :</td>
+                    <td><input type="text" name="odibayar"></td>
+                </tr>
+                <tr>
+                    <td scope="col">Kembalian :</td>
+                    <td><input type="text" name="okembalian"></td>
+                </tr>
+            </table>
+            </table>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
